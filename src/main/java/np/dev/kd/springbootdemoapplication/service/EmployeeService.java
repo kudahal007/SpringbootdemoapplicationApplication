@@ -5,6 +5,8 @@ import np.dev.kd.springbootdemoapplication.exception.EmployeeNotFoundException;
 import np.dev.kd.springbootdemoapplication.model.Employee;
 import np.dev.kd.springbootdemoapplication.repository.EmployeeRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,8 +33,8 @@ public class EmployeeService {
                 () -> new EmployeeNotFoundException("Employee not found with id: " + id));
     }
 
-    public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+    public Page<Employee> getAllEmployees(Pageable pageable) {
+        return employeeRepository.findAll(pageable);
     }
 
     public Employee updateEmployee(EmployeeDTO employeeDTO, Long id) {

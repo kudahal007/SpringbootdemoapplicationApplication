@@ -4,6 +4,8 @@ import np.dev.kd.springbootdemoapplication.dto.EmployeeDTO;
 import np.dev.kd.springbootdemoapplication.model.Employee;
 import np.dev.kd.springbootdemoapplication.service.EmployeeService;
 import np.dev.kd.springbootdemoapplication.validation.ValidationGroups;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -40,8 +42,8 @@ public class EmployeeController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Employee>> getAllEmployees(){
-        return ResponseEntity.ok(employeeService.getAllEmployees());
+    public ResponseEntity<Page<Employee>> getAllEmployees(Pageable pageable){
+        return ResponseEntity.ok(employeeService.getAllEmployees(pageable));
     }
     @PutMapping("/{id}")
     public ResponseEntity<Employee> updateEmployee(@Validated(ValidationGroups.Create.class) @RequestBody EmployeeDTO employeeDTO,
@@ -49,7 +51,7 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.updateEmployee(employeeDTO,id));
     }
     @PatchMapping("/{id}")
-    public ResponseEntity<Employee> patchEmployee(@Validated(ValidationGroups.Update.class) @RequestBody EmployeeDTO employeeDTO,
+    public ResponseEntity<Employee> patchEmployee(@Validated(ValidationGroups.Patch.class) @RequestBody EmployeeDTO employeeDTO,
                                                    @PathVariable Long id){
         return ResponseEntity.ok(employeeService.patchEmployee(employeeDTO,id));
     }
