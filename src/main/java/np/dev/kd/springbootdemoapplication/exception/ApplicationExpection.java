@@ -1,6 +1,8 @@
 package np.dev.kd.springbootdemoapplication.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import java.util.Map;
 @ControllerAdvice
 
 public class ApplicationExpection {
+    private static final Logger log = LoggerFactory.getLogger(ApplicationExpection.class);
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> handleValidationErrors(MethodArgumentNotValidException ex,
                                                            HttpServletRequest request) {
@@ -43,13 +46,14 @@ public class ApplicationExpection {
     }
 
     @ExceptionHandler(EmployeeNotFoundException.class)
-    public ResponseEntity<ApiError> handleUserNotFoundException(EmployeeNotFoundException ex,
+    public ResponseEntity<ApiError> handleEmployeeNotFoundException(EmployeeNotFoundException ex,
                                                                 HttpServletRequest request) {
         ApiError error = new ApiError(HttpStatus.NOT_FOUND.value(),
                 "Not Found",
                 Map.of("message",ex.getLocalizedMessage()),
                 request.getRequestURI(),
                 LocalDateTime.now());
+        log.error(error.toString());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
 }
