@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: springbootdemoapplication
+
+server:
+  port: 8088
+
