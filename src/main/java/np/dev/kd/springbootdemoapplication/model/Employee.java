@@ -19,8 +19,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Long id, String firstName, String lastName, String email, double salary) {
-        this.id = id;
+    public Employee(String firstName, String lastName, String email, double salary) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -65,5 +64,16 @@ public class Employee {
 
     public void setSalary(double salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", salary=" + salary +
+                '}';
     }
 }
