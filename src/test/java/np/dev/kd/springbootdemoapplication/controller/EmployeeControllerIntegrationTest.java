@@ -117,6 +117,5 @@ class EmployeeControllerIntegrationTest {
     void shouldDeleteEmplyeeById() throws Exception {
         mockMvc.perform(delete("/employees/" + setupEmployee.getId()))
                 .andExpect(status().isNoContent());
-
     }
 }
