@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>np.dev.kd</groupId>
 	<artifactId>springbootdemoapplication</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>springbootdemoapplication</name>
 	<description>Complete springboot fundamentals</description>
 	<url/>
